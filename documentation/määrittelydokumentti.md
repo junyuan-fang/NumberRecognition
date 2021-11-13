@@ -16,3 +16,4 @@ Olen TKT opiskelija.
 *   [MINST](http://yann.lecun.com/exdb/mnist/)
 *   [A Modified Hausdorff Distance for Object Matching](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.1.8155&rank=5&q=hausdorff&osm=&ossid=)
 *   [k nearest neighbors computational complexity](https://towardsdatascience.com/k-nearest-neighbors-computational-complexity-502d2c440d5)
+
