@@ -9,5 +9,3 @@
     * -
 * Mitä teen seuraavaksi?
     * Sama kuin viikko1:n suunnitelma.
-
-    ½
