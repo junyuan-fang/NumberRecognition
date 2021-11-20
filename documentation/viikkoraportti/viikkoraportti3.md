@@ -12,7 +12,7 @@
 
 
 * Mitä opin tällä viikolla / tänään?
-    * Lisää yksikkötestiä, algoritmin valinta etäisyyden laskemista varten.
+    * Lisää yksikkötestiä, algoritmin valintaa.
 * Mikä jäi epäselväksi tai tuottanut vaikeuksia? Vastaa tähän kohtaan rehellisesti, koska saat tarvittaessa apua tämän kohdan perusteella.
     * Miksi D10:lle ja D14:lle lisäys(funktiolla Ka) on huono, minun käsityksellä se on hyvä asia kun nämä D10 ja D14 pystyvät ottamaan virheen huomioon kunnes vireet esiintyvät niin monta kertaa. Mitä mieltä? Miksi nämä ovat huonoja?
     * Onko ymmärrykseni oikein: ei käytetä D18, koska sillä virheita maksimoidaan, ei käytetä D10 eikä D14 koska kun virheiden määrä menee kynnysarvon yli, tulee todella huonon tulosta(spekulointi)
