@@ -7,6 +7,7 @@ from PyQt5.uic import loadUi#load dynamically
 
 from main_window_ui import Ui_MainWindow #contains the GUI for your main window
 
+
 #defines Window, which will provide your application’s main window. 
 # In this case, the class uses multiple inheritance. 
 # It inherits the main window functionality from QMainWindow 

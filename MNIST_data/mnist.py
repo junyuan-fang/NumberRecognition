@@ -63,6 +63,17 @@ def init_mnist():
         pickle.dump(dataset, f, -1)#for later loading
     print("Done!")
 
+def load_mnist():
+    if not os.path.exists(save_file):
+        init_mnist()
+        
+    with open(save_file, 'rb') as f:
+        dataset = pickle.load(f)
+    return dataset
+
+def test_imported():
+    print("Imported")
+    
 if __name__ == '__main__':
     #init_mnist()
 
@@ -76,14 +87,21 @@ if __name__ == '__main__':
 
     img = dataset['train_img'][9]    # shape:[1,28,28] 
     img = img.reshape(28, 28)                   # shape:[28,28]  
-
+    #imaging 0-127 are -128 - -1  negative
+    #      128-255 are    0 - 127 positive
     img2 = img * 0xff      # outline/恢复灰度值大小 
     from pylab import *
     import matplotlib.pyplot as plt
     imshow(img2, 'gray')
     plt.show()
     #normalize
-    img = img.astype(np.float32)
-    img /= 255.0
-    print(img)
-    print(dataset['train_label'][9])
+
+    # print(img2)
+
+    # print(img)
+    # print()
+    # a=[[1,0],[1,0]]
+    print(img[4])
+    print(img[4][-5])
+    print(img[4][-6])
+    # print(dataset['train_label'][9])
