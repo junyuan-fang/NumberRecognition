@@ -19,3 +19,4 @@ Olen TKT opiskelija.
 
 *   [qt-designer-python](https://realpython.com/qt-designer-python/)
 *   [Python Qt 图形界面编程 ](http://www.byhy.net/tut/py/gui/qt_01/)
+*   [Understanding Python Pickling with example ](https://www.geeksforgeeks.org/understanding-python-pickling-example/)

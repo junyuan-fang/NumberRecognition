@@ -15,55 +15,75 @@ test_num = 10000
 img_dim = (1, 28, 28)
 img_size = 28*28 #784
 
-train_num = 60000
-test_num = 10000 
-
+#/home/fjunyuan/Codes/TiraLabra/Recognition_of_handwritten_numbers/MNIST_data/
 dataset_dir = os.path.dirname(os.path.abspath(__file__))
+#print(dataset_dir)
+save_file = dataset_dir + "/mnist.pkl"
+
 
 def _load_img(file_name):
     file_path = dataset_dir + "/" + file_name
     
     print("Converting " + file_name + " to NumPy Array ...")    
     with gzip.open(file_path, 'rb') as f:
-            data = np.frombuffer(f.read(), np.uint8, offset=16)
-    data = data.reshape(-1, img_size)
+            data = np.frombuffer(f.read(), np.uint8, offset=16)#according to the MNIST
+    data = data.reshape(-1, img_size)#-1 then we do not need to know the original size. train = 60000x784, test = 10000x784
     print("Done")
     
-    print(len(data))
-    print(len(data[0]))
+    #print(data.shape)
     return data
 
-dataset = {}
-dataset['train_img'] =  _load_img(key_file['train_img'])
+def _load_label(file_name):
+    file_path = dataset_dir + "/" + file_name
+    
+    print("Converting " + file_name + " to NumPy Array ...")
+    with gzip.open(file_path, 'rb') as f:
+            labels = np.frombuffer(f.read(), np.uint8, offset=8)#according to the MNIST
+    print("Done")
 
-#print(dataset['train_img'][0])
-print(os.path.abspath(__file__))
+    #print(data.shape)
+    return labels
 
-img = dataset['train_img'][0]    # shape:[1,28,28] 
-img = img.reshape(28, 28)                   # shape:[28,28]  
+def _convert_numpy():
+    dataset = {}
+    dataset['train_img'] =  _load_img(key_file['train_img'])
+    dataset['train_label'] = _load_label(key_file['train_label'])    
+    dataset['test_img'] = _load_img(key_file['test_img'])
+    dataset['test_label'] = _load_label(key_file['test_label'])
+    
+    return dataset
 
-img = img * 0xff      # 恢复灰度值大小 
-from pylab import *
-imshow(img, interpolation='nearest')
-grid(True)
-print(img)  
-# import numpy as np
-# import matplotlib.pyplot as plt
-# import matplotlib.cm as cm
+def init_mnist():
+    '''
+    Note：Load the file for the first time and save it to pickle
+    '''
+    dataset = _convert_numpy()
+    print("Creating pickle file ...")
+    with open(save_file, 'wb') as f:
+        pickle.dump(dataset, f, -1)#for later loading
+    print("Done!")
 
-# # Make an array with ones in the shape of an 'X'
-# a = np.eye(10,10)
-# print(a)
-# print(a[::-1,:])
-# a += a[::-1,:]
+if __name__ == '__main__':
+    #init_mnist()
 
-# fig = plt.figure()
-# ax1 = fig.add_subplot(121)
-# # Bilinear interpolation - this will look blurry
-# ax1.imshow(a, interpolation='bilinear', cmap=cm.Greys_r)
+    #tests
+    dataset = {}
+    dataset['train_img'] =  _load_img(key_file['train_img'])
+    dataset['train_label'] =  _load_label(key_file['train_label'])
 
-# ax2 = fig.add_subplot(122)
-# # 'nearest' interpolation - faithful but blocky
-# ax2.imshow(a, interpolation='nearest', cmap=cm.Greys_r)
+    #print(dataset['train_img'][0])
+    print(os.path.abspath(__file__))
 
-# plt.show()
+    img = dataset['train_img'][9]    # shape:[1,28,28] 
+    img = img.reshape(28, 28)                   # shape:[28,28]  
+
+    img2 = img * 0xff      # outline/恢复灰度值大小 
+    from pylab import *
+    import matplotlib.pyplot as plt
+    imshow(img2, 'gray')
+    plt.show()
+    #normalize
+    img = img.astype(np.float32)
+    img /= 255.0
+    print(img)
+    print(dataset['train_label'][9])
