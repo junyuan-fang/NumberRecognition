@@ -6,6 +6,9 @@
 | 1h    | MINST tiedostojen käsittely ilman keras tai tensorflow | 
 | 1h    | MINST |
 | 1h    | pytest |
+| 1h    | Hannun kanssa |
+| 1h    | Kertaus |
+| 1.5h    | MINST käsittely |
 
 
 * Mitä opin tällä viikolla / tänään?

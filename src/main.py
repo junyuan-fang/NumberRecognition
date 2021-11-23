@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.uic import loadUi#load dynamically
 
-from main_window_ui import Ui_MainWindow #contains the GUI for your main window
+from ui.main_window_ui import Ui_MainWindow #contains the GUI for your main window
 
 
 #defines Window, which will provide your application’s main window. 
