@@ -153,7 +153,7 @@ def load_img_boolean(grayScale=73):
         init_img_boolean(grayScale)
 
     with open(save_file_img_boolean, 'rb') as f:
-        dataset = pickle.load(f)
+        dataset = pickle.load(f)#takes 3s to load, which is slow
 
     # value = dataset['train_img'][9]
     
@@ -162,7 +162,7 @@ def load_img_boolean(grayScale=73):
 
     return dataset
 #------------------------------------------------------
-def conver_img_to_x_y(img_set,grayScale=73):
+def conver_img_to_y_x(img_set,grayScale=73):
     """ Go through 60000x28x28 or 10000x28x28
         find grayscale which are greater than parameter
         append it to the list 60000 x unknow.
@@ -186,7 +186,7 @@ def conver_img_to_x_y(img_set,grayScale=73):
         set.append(matrix)
     return set
 
-def init_img_boolean_index(grayScale=73):
+def init_img_to_y_x(grayScale=73):
     """ Creating pickle file for img
         Save as {'train_img': ... , 'test_img': ...}
     """
@@ -195,8 +195,8 @@ def init_img_boolean_index(grayScale=73):
     train_img = _load_img(key_file['train_img'])
     test_img = _load_img(key_file['test_img'])
 
-    dataset ['train_img'] = conver_img_to_x_y(train_img, grayScale)
-    dataset ['test_img'] = conver_img_to_x_y(test_img, grayScale)
+    dataset ['train_img'] = conver_img_to_y_x(train_img, grayScale)
+    dataset ['test_img'] = conver_img_to_y_x(test_img, grayScale)
 
     print("Creating pickle file for image(index)...")
     with open(save_file_img_boolean_index, 'wb') as f:
@@ -204,14 +204,14 @@ def init_img_boolean_index(grayScale=73):
     print("Done!")
 
 
-def load_img_boolean_index(grayScale=73):
+def load_img_to_y_x_index(grayScale=73):
     """ If pickle file not exist, load .gz, find location with grayscale and create pickle file.
         Read pickle file.
         Returns:
             dataset: returns matrix 60000x list of [i,j]  or 10000x list of [i,j] depends on grayscale
     """
     if not os.path.exists(save_file_img_boolean_index):
-        init_img_boolean_index(grayScale)
+        init_img_to_y_x(grayScale)
 
     with open(save_file_img_boolean_index, 'rb') as f:
         dataset = pickle.load(f)
@@ -233,7 +233,7 @@ if __name__ == '__main__':
     dataset = _load_label_pkl()
     print(dataset['train_label'][0])
     load_img_boolean() 
-    load_img_boolean_index()#only value "1" location in the list
+    load_img_to_y_x_index()#only value "1" location in the list
 
     # #tests
     # dataset = {}
