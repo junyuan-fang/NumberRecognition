@@ -1,23 +1,36 @@
 from repository.mnist_data_repository import mnist_data_repository as data_repo
 from math import sqrt
 from heapq import _heapify_max
+import random
 
 class Knn:
+    """
+    Attributes:
+        _test_label: testing image labels
+        _train_label: training image labels
+        _test_img: testing image data, 2d matrix with values 0 or 1
+        _test_img_location: testing image data, 1d list with values 0-27 coordinates
+        _train_img: trainning image data, 2d matrix with values 0 or 1
+        _train_img_location: trainning image data, 1d list with values 0-27 coordinates
+    """
     def __init__(self):
+        """KNN constructor"""
+
         self._test_label, self._train_label, self._test_img, self._train_img, self._test_img_location, self._train_img_location = data_repo.get_all()
         
     def recognition(self, k = 3, input_img_index = 0 , train_range = 200, method = "D22"):
-        """[summary]
+        """Classifier, with method D22 and D23. We assume that 0-9 data's appearance are equal
 
         Args:
-            k ([type]): [description]
-            input_img_index ([type]): [description]
-            train_range ([type]): [description]
+            k (int, optional): [description]. Defaults to 3.
+            input_img_index (int, optional): [description]. Defaults to 0.
+            train_range (int, optional): Because this method takes a lot of time for trainning. Defaults to 200.
             method (str, optional): [description]. Defaults to "D22".
+
         Returns:
-            retult
+            result (int) : 0-9 number 
         """
-        imagesB_location, imagesB = self._get_dataB_normal(train_range)
+        imagesB_location, imagesB = self._get_dataB_normal(train_range)#self._get_dataB_random(train_range)
         imageA_location = self._test_img_location[input_img_index]
         imageA = self._test_img[input_img_index]
 
@@ -38,10 +51,18 @@ class Knn:
                     heap_k[0]=(dist,label)
                     _heapify_max(heap_k)
 
-        #get th reseult
+        #get the reseult
         #print (self.get_result(heap_k))
         return self.get_result(heap_k)
-    def get_result(self, heap_k):
+    def get_result(self, heap_k):#improveable, what if frequences are same?
+        """return the most frequence number in the list
+
+        Args:
+            heap_k (tuple list(dist, label)): max heap, according to the dist
+
+        Returns:
+            label (int 0-9): most frequence number 
+        """
         results = []
         for item in heap_k:
             results.append(item[1])
@@ -51,20 +72,32 @@ class Knn:
     def _get_dataB_normal(self, train_range):
         """ 0 - train_range-1 index's data from the trainning list 
         Args:
-            train_range ([type]): [description]
+            train_range (int): <=60000
         Returns:
-            [type]: [description]
+            imageB: trainning image data, 1d list with values 0-27 coordinates, size = train_range
         """
         
         return self._train_img_location[:train_range], self._train_img[:train_range]
+    
+    def _get_dataB_random(self, train_range):
+        """ Data from the trainning list. Selecting data randomly
+        Args:
+            train_range (int): <=60000
+        Returns:
+            imageB: trainning image data, 1d list with values 0-27 coordinates, size = train_range
+        """
+        
+        return random.sample(self._train_img_location, train_range), random.sample(self._train_img, train_range)
 
     def _D_22(self, imageA_location:list, imageA, imageB_location:list, imageB):
         """Distance measure D22 from
         https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=6F7642FDC63869C9A005AB4B14ED484E?doi=10.1.1.1.8155&rep=rep1&type=pdf
 
         Args:
-            A : image data
-            B : image data
+            imageA_location : 1d list with values 0-27 coordinates
+            imageA : 2d matrix with values 0 or 1
+            imageB_location : 1d list with values 0-27 coordinates
+            imageB : 2d matrix with values 0 or 1
 
         Returns:
             float: distance between two images
@@ -78,8 +111,8 @@ class Knn:
         https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=6F7642FDC63869C9A005AB4B14ED484E?doi=10.1.1.1.8155&rep=rep1&type=pdf
         
         Args:
-            A : dataset
-            B : dataset
+            imageA_location : 1d list with values 0-27 coordinates
+            imageB : 2d matrix with values 0 or 1
 
         Returns:
             float: distance between two datasets
@@ -94,6 +127,15 @@ class Knn:
 
     
     def _from_point_to_set_dist(self, point:list, B):
+        """calculatiing the shortest dist, d(a, B)
+
+        Args:
+            point (list): [y,x]
+            imageB : 2d matrix with values 0 or 1
+
+        Returns:
+            dist : shortest dist
+        """
         visited = [[False for j in range(28)] for i in range(28)]
         min_y = point[0]
         max_y = min_y
@@ -139,6 +181,17 @@ class Knn:
         return dist
     
     def _get_dist(self, Ay, Ax, By, Bx):
+        """Euclidean distance
+
+        Args:
+            Ay ([type]): [description]
+            Ax ([type]): [description]
+            By ([type]): [description]
+            Bx ([type]): [description]
+
+        Returns:
+            dist : Euclidean distance
+        """
         return sqrt(pow(Ay - By, 2) + pow(Ax - Bx, 2))
 
     ##### for checkling 
@@ -152,7 +205,7 @@ knn = Knn()
 "Start recognition"
 from time import time
 start = time()
-index = 
+index = 0
 k = 3
 result = knn.recognition(k,index)
 print(time()-start)
