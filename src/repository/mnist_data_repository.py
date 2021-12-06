@@ -1,5 +1,4 @@
 from repository import mnist
-import time
 class MnistRepository():
     """Class for loading MNIST data
     """

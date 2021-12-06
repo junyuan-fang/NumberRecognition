@@ -20,7 +20,7 @@ img_size = 28*28 #784
 GRAYSCALE = 73
 
 #/home/fjunyuan/Codes/TiraLabra/Recognition_of_handwritten_numbers/src/MNIST_data/
-dataset_dir = os.path.abspath(os.path.dirname(os.getcwd())) + "/src/MNIST_data"
+dataset_dir = os.path.abspath(os.path.dirname(os.getcwd())) + "/Recognition_of_handwritten_numbers/src/MNIST_data"
 #print(dataset_dir)
 save_file_label = dataset_dir + "/label.pkl"
 save_file_img_boolean = dataset_dir + "/img_boolean.pkl"
@@ -56,7 +56,7 @@ def _load_label(file_name):
     """
 
     file_path = dataset_dir + "/" + file_name
-    
+    print(file_path)
     print("Converting " + file_name + " to NumPy Array ...")
     with gzip.open(file_path, 'rb') as f:
             labels = np.frombuffer(f.read(), np.uint8, offset=8)#according to the MNIST

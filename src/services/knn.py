@@ -1,12 +1,12 @@
 from repository.mnist_data_repository import mnist_data_repository as data_repo
 from math import sqrt
-from heapq import heappop, heappush
+from heapq import _heapify_max
 
 class Knn:
     def __init__(self):
         self._test_label, self._train_label, self._test_img, self._train_img, self._test_img_location, self._train_img_location = data_repo.get_all()
         
-    def recognition(self, k = 3, input_img_index = 0 , train_range = 150, method = "D22"):
+    def recognition(self, k = 3, input_img_index = 0 , train_range = 200, method = "D22"):
         """[summary]
 
         Args:
@@ -21,11 +21,31 @@ class Knn:
         imageA_location = self._test_img_location[input_img_index]
         imageA = self._test_img[input_img_index]
 
-        heap = [(40,None) for _ in range(k)]
-        for i in range (train_range):
-            
+        heap_k = []
+        #go through the tainning set
+        for index in range (train_range):
+            dist = self._D_22(imageA_location, imageA, imagesB_location[index], imagesB[index])
+            if len(heap_k) < k:
+                #add tuple (dist,label)
+                label = self._train_label[index]
+                heap_k.append((dist, label))
+                _heapify_max(heap_k)
+            #not < k and dist is smaller
+            else:
+                heap_k_max_dist = heap_k[0][0]
+                if dist < heap_k_max_dist:
+                    label = self._train_label[index]
+                    heap_k[0]=(dist,label)
+                    _heapify_max(heap_k)
 
-
+        #get th reseult
+        #print (self.get_result(heap_k))
+        return self.get_result(heap_k)
+    def get_result(self, heap_k):
+        results = []
+        for item in heap_k:
+            results.append(item[1])
+        return max(set(results), key=results.count)
 
 
     def _get_dataB_normal(self, train_range):
@@ -43,8 +63,8 @@ class Knn:
         https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=6F7642FDC63869C9A005AB4B14ED484E?doi=10.1.1.1.8155&rep=rep1&type=pdf
 
         Args:
-            img1 (int[]): image data
-            img2 (int[]): image data
+            A : image data
+            B : image data
 
         Returns:
             float: distance between two images
@@ -58,8 +78,8 @@ class Knn:
         https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=6F7642FDC63869C9A005AB4B14ED484E?doi=10.1.1.1.8155&rep=rep1&type=pdf
         
         Args:
-            A (int[]): dataset
-            B (int[]): dataset
+            A : dataset
+            B : dataset
 
         Returns:
             float: distance between two datasets
@@ -119,10 +139,22 @@ class Knn:
         return dist
     
     def _get_dist(self, Ay, Ax, By, Bx):
-         return sqrt(pow(Ay - By, 2) + pow(Ax - Bx, 2))
+        return sqrt(pow(Ay - By, 2) + pow(Ax - Bx, 2))
+
+    ##### for checkling 
+    def get_label(self, i):
+        return self._test_label[i]
 
 
 
 
 knn = Knn()
-
+"Start recognition"
+from time import time
+start = time()
+index = 
+k = 3
+result = knn.recognition(k,index)
+print(time()-start)
+print(result)
+print(knn.get_label(index))

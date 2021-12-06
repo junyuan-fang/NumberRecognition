@@ -1,8 +1,19 @@
-from heapq import heappop, heappush
+from heapq import heappop, heappush,_heapify_max
 heap = [1,5,3,4,5]
 heappush(heap, 1)
+_heapify_max(heap)
+heappush(heap,4)
 print(heap)
-print([(40,None) for _ in range(3)])
+
+heap2 = [(40,None) for _ in range(3)]
+heap2[0] = (20,2)
+results = []
+for item in heap2:
+    results.append(item[1])
+sets = set(results)
+print(set(results))
+p = max(set(results), key=results.count)
+print(p)
 # visited = [[False for j in range(28)] for i in range(28)]
 # min_y = 15
 # max_y = min_y
