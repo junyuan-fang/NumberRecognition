@@ -123,6 +123,39 @@ class Knn:
         for point in imageA_location:
             dist += self._from_point_to_set_dist(point, imageB)
         return dist/N_a
+    
+    def _D_23(self, imageA_location:list, imageA, imageB_location:list, imageB):
+        """Distance measure D23 from
+        https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=6F7642FDC63869C9A005AB4B14ED484E?doi=10.1.1.1.8155&rep=rep1&type=pdf
+
+        Args:
+            imageA_location : 1d list with values 0-27 coordinates
+            imageA : 2d matrix with values 0 or 1
+            imageB_location : 1d list with values 0-27 coordinates
+            imageB : 2d matrix with values 0 or 1
+
+        Returns:
+            float: distance between two images
+        """
+        ### f_2 = max(d(A, B), d(B, A))
+        return max( self._d_5(imageA_location, imageB), self._d_5(imageB_location, imageA))
+
+    def _d_5(self, imageA_location:list, imageB):
+        """Distance between two datasets A and B. Directed distance measure d5 from
+        https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=6F7642FDC63869C9A005AB4B14ED484E?doi=10.1.1.1.8155&rep=rep1&type=pdf
+        
+        Args:
+            imageA_location : 1d list with values 0-27 coordinates
+            imageB : 2d matrix with values 0 or 1
+
+        Returns:
+            float: distance between two datasets
+        """
+        # d_5 = max (a ∈ A) d(a, B)
+        dist = 0.0
+        for point in imageA_location:
+            dist = max( dist, self._from_point_to_set_dist(point, imageB))
+        return dist
         
 
     

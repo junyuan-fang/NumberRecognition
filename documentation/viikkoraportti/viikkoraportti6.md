@@ -2,6 +2,7 @@
 | Käytetyt ajat | tehnyt |
 | :----------:    | :-----------:   |
 | 1h | GUI |
+| 2h | GUI |
 
 
 * Mitä opin tällä viikolla / tänään?
