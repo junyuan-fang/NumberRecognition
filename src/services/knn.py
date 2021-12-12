@@ -1,4 +1,4 @@
-from repository.mnist_data_repository import mnist_data_repository as data_repo
+from repositories.mnist_data_repository import mnist_data_repository as data_repo
 from math import sqrt
 from heapq import _heapify_max
 import random
