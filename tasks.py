@@ -14,5 +14,5 @@ def test(ctx):
     ctx.run("pytest src")
 
 @task
-def program(ctx):
+def start(ctx):
     ctx.run("python3 src/main.py")

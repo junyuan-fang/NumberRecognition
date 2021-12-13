@@ -5,6 +5,7 @@ class UI:
     def start(self):
         app = QApplication(sys.argv)
         win = Window() 
+        win.setGeometry(200, 200, 1200, 600)
         win.setWindowTitle("knn classifier")
         win.show()
         #app.exec()
