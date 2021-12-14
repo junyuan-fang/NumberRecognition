@@ -37,7 +37,10 @@ class Knn:
         heap_k = []
         #go through the tainning set
         for index in range (train_range):
-            dist = self._D_22(imageA_location, imageA, imagesB_location[index], imagesB[index])
+            if method == "D22":
+                dist = self._D_22(imageA_location, imageA, imagesB_location[index], imagesB[index])
+            if method == "D23":
+                dist = self._D_23(imageA_location, imageA, imagesB_location[index], imagesB[index])
             if len(heap_k) < k:
                 #add tuple (dist,label)
                 label = self._train_label[index]
@@ -230,17 +233,19 @@ class Knn:
     ##### for checkling 
     def get_label(self, i):
         return self._test_label[i]
-
+    
+    def get_test_img(self, i):
+        return self._test_img[i]
 
 
 
 knn = Knn()
-"Start recognition"
-from time import time
-start = time()
-index = 0
-k = 3
-result = knn.recognition(k,index)
-print(time()-start)
-print(result)
-print(knn.get_label(index))
+# "Start recognition"
+# from time import time
+# start = time()
+# index = 0
+# k = 3
+# result = knn.recognition(k,index)
+# print(time()-start)
+# print(result)
+# print(knn.get_label(index))

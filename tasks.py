@@ -16,3 +16,7 @@ def test(ctx):
 @task
 def start(ctx):
     ctx.run("python3 src/main.py")
+
+@task
+def  tui(ctx):
+    ctx.run("python3 src/main_tui.py")
