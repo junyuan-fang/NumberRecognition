@@ -61,12 +61,16 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(80, 370, 131, 17))
         self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(210, 370, 31, 17))
+        self.label_2.setObjectName("label_2")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
+        self.k.valueChanged['int'].connect(self.label_2.setNum) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -82,3 +86,4 @@ class Ui_MainWindow(object):
         self.result.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-weight:600;\">Result : </span></p></body></html>"))
         self.knnResult.setText(_translate("MainWindow", "9"))
         self.label.setText(_translate("MainWindow", "K - neighbors:"))
+        self.label_2.setText(_translate("MainWindow", "1"))

@@ -18,7 +18,14 @@ class Window(QMainWindow, Ui_MainWindow):
         src_dir = os.path.abspath(os.path.dirname(os.getcwd())) + "/Recognition_of_handwritten_numbers/src/"
         loadUi(src_dir + "ui/main_window.ui", self)#use self.setupUi(self) if do not want to use loadUi 
         #self.setupUi(self)#creates the whole GUI for your main window.
+        # self.k.setMinimum(1)
+        # self.k.setMaximum(10)
+
     def closeEvent(self, event):
+        """ask again when quitting
+        Args:
+            event ([type]): [description]
+        """
         reply = QMessageBox.question(self, 'Message',
             "Are you sure to quit?", QMessageBox.Yes | 
             QMessageBox.No, QMessageBox.Yes)

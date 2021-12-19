@@ -6,109 +6,44 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>950</width>
-    <height>615</height>
+    <width>667</width>
+    <height>691</height>
    </rect>
+  </property>
+  <property name="sizeIncrement">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>15</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QComboBox" name="picture_or_drawing">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>160</y>
-      <width>221</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>1:  MNIST random selection</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>160</y>
-      <width>131</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Data Input area</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="method">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>220</y>
-      <width>171</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>D22</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>D23</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QPushButton" name="random_selection">
-    <property name="geometry">
-     <rect>
-      <x>78</x>
-      <y>274</y>
-      <width>171</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Random Selection</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="clear_table">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>320</y>
-      <width>171</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Clear</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="re">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>450</y>
-      <width>171</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Recognization</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>180</y>
-      <width>221</width>
-      <height>221</height>
+      <x>320</x>
+      <y>300</y>
+      <width>261</width>
+      <height>271</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
     </property>
     <layout class="QVBoxLayout" name="dArea_Layout">
      <property name="spacing">
@@ -128,65 +63,254 @@
      </property>
     </layout>
    </widget>
-   <widget class="QLabel" name="result">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>200</y>
-      <width>91</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Result : &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="knnResult">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>230</y>
+      <x>160</x>
+      <y>350</y>
       <width>91</width>
       <height>131</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>48</pointsize>
+      <pointsize>43</pointsize>
      </font>
     </property>
     <property name="text">
      <string>9</string>
     </property>
    </widget>
-   <widget class="QSlider" name="k">
+   <widget class="QLabel" name="k_label">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>410</y>
-      <width>221</width>
+      <x>91</x>
+      <y>50</y>
+      <width>121</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Sans</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>K - neighbors:</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="kslider">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>90</y>
+      <width>471</width>
       <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="kslider_2">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>170</y>
+      <width>471</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="k_value">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>50</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="k_value_2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>130</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QCommandLinkButton" name="commandLinkButton">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>520</y>
+      <width>181</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Random image</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="k_label_2">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>130</y>
+      <width>121</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Sans</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Trainning size:</string>
+    </property>
+   </widget>
+   <widget class="QCommandLinkButton" name="commandLinkButton_2">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>550</y>
+      <width>181</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Recognization</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>-160</x>
+      <y>240</y>
+      <width>1171</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QSplitter" name="splitter">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>370</y>
-      <width>131</width>
-      <height>17</height>
+      <x>110</x>
+      <y>260</y>
+      <width>471</width>
+      <height>51</height>
      </rect>
     </property>
-    <property name="text">
-     <string>K - neighbors:</string>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
+    <widget class="QLabel" name="result">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Result : &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="result_2">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Data input area:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
    </widget>
   </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>667</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sans</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <widget class="QMenu" name="menuInput">
+    <property name="title">
+     <string>Input</string>
+    </property>
+    <addaction name="action1_MNIT_random_selection"/>
+    <addaction name="action2_Mouse"/>
+   </widget>
+   <widget class="QMenu" name="menuMethod">
+    <property name="title">
+     <string>Method</string>
+    </property>
+    <addaction name="actionD22"/>
+    <addaction name="actionD23"/>
+   </widget>
+   <addaction name="menuInput"/>
+   <addaction name="menuMethod"/>
+  </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="action1_MNIT_random_selection">
+   <property name="text">
+    <string>1: MNIT</string>
+   </property>
+  </action>
+  <action name="action2_Mouse">
+   <property name="text">
+    <string>2:Mouse</string>
+   </property>
+  </action>
+  <action name="actionD22">
+   <property name="text">
+    <string>D22</string>
+   </property>
+  </action>
+  <action name="actionD23">
+   <property name="text">
+    <string>D23</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
