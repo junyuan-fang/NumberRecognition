@@ -23,6 +23,7 @@ GRAYSCALE = 73
 dataset_dir = os.path.abspath(os.path.dirname(os.getcwd())) + "/Recognition_of_handwritten_numbers/src/MNIST_data"
 #print(dataset_dir)
 save_file_label = dataset_dir + "/label.pkl"
+save_file_img = dataset_dir + "/test_img_bit.pkl"
 save_file_img_boolean = dataset_dir + "/img_boolean.pkl"
 save_file_img_boolean_index = dataset_dir + "/img_boolean_index.pkl"
 
@@ -96,7 +97,34 @@ def _load_label_pkl():
     #     print(w) 
 
     return dataset
+#------------------------------------------------------
+def init_test_img():
+    """ Creating pickle file for test img
+        Save as {'train_img': ... , 'test_img': ...}
+        for gui not algorithm
+    """
 
+    dataset = _load_img(key_file['test_img'])
+
+    print("Creating pickle file for test image...")
+    with open(save_file_img, 'wb') as f:
+        pickle.dump(dataset, f, -1)#for later loading
+    print("Done!")
+
+def load_test_img():
+    """ If pickle file not exist, load .gz, and create pickle file.
+        Read pickle file.
+        Returns:
+            dataset: returns matrix  10000x784 values are 0-255
+    """
+
+    if not os.path.exists(save_file_img):
+        init_test_img()
+
+    with open(save_file_img, 'rb') as f:
+        dataset = pickle.load(f)# slow
+
+    return dataset
 #------------------------------------------------------
 def conver_img_to_boolean(img_set, grayScale=73):
     """ Go through 60000x28x28 or 10000x28x28

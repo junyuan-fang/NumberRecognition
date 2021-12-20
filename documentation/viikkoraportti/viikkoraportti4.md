@@ -12,8 +12,8 @@
 
 
 * Mitä opin tällä viikolla / tänään?
-    * 
+    * MINST tiedostojen käsittely
 * Mikä jäi epäselväksi tai tuottanut vaikeuksia? Vastaa tähän kohtaan rehellisesti, koska saat tarvittaessa apua tämän kohdan perusteella.
-    * 
+    * MINST tiedostojen käsittely omalla koodilla on vaikea.
 * Mitä teen seuraavaksi?
-    * 
+    * Algoritmin toteutus

@@ -66,8 +66,8 @@
    <widget class="QLabel" name="knnResult">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>350</y>
+      <x>170</x>
+      <y>340</y>
       <width>91</width>
       <height>131</height>
      </rect>
@@ -100,7 +100,7 @@
      <string>K - neighbors:</string>
     </property>
    </widget>
-   <widget class="QSlider" name="kslider">
+   <widget class="QSlider" name="kSlider">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -118,7 +118,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="kslider_2">
+   <widget class="QSlider" name="trainningSlider">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -151,7 +151,7 @@
      </font>
     </property>
    </widget>
-   <widget class="QSpinBox" name="k_value_2">
+   <widget class="QSpinBox" name="trainning_value">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -166,20 +166,30 @@
      </font>
     </property>
    </widget>
-   <widget class="QCommandLinkButton" name="commandLinkButton">
+   <widget class="QCommandLinkButton" name="selectImage">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>520</y>
+      <x>90</x>
+      <y>490</y>
       <width>181</width>
       <height>41</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Ubuntu Thin</family>
+      <pointsize>13</pointsize>
+      <kerning>false</kerning>
+     </font>
+    </property>
     <property name="text">
      <string>Random image</string>
     </property>
+    <property name="description">
+     <string>Extract a img from MNIST</string>
+    </property>
    </widget>
-   <widget class="QLabel" name="k_label_2">
+   <widget class="QLabel" name="trainninglabel">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -198,14 +208,20 @@
      <string>Trainning size:</string>
     </property>
    </widget>
-   <widget class="QCommandLinkButton" name="commandLinkButton_2">
+   <widget class="QCommandLinkButton" name="recognization">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>550</y>
+      <x>90</x>
+      <y>570</y>
       <width>181</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Ubuntu Thin</family>
+      <pointsize>13</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Recognization</string>
@@ -236,7 +252,7 @@
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
-    <widget class="QLabel" name="result">
+    <widget class="QLabel" name="ResultLabel">
      <property name="font">
       <font>
        <pointsize>12</pointsize>
@@ -246,7 +262,7 @@
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Result : &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QLabel" name="result_2">
+    <widget class="QLabel" name="DataInputLabel">
      <property name="font">
       <font>
        <pointsize>12</pointsize>
@@ -256,6 +272,25 @@
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Data input area:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QCommandLinkButton" name="clear">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>530</y>
+      <width>181</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Ubuntu Thin</family>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Clear</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -313,5 +348,70 @@
   </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>kSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>k_value</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>325</x>
+     <y>120</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>255</x>
+     <y>83</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>trainningSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>trainning_value</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>325</x>
+     <y>200</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>255</x>
+     <y>163</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action1_MNIT_random_selection</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>selectImage</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>190</x>
+     <y>553</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action2_Mouse</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>selectImage</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>190</x>
+     <y>553</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
