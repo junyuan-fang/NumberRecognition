@@ -6,6 +6,9 @@
 | 1.5h | TUI |
 | 2h | Vertaisarviointi |
 | extra 2h | GUI |
+| extra 2h | GUI |
+| extra 2h | GUI |
+| extra 2h | GUI |
 
 
 

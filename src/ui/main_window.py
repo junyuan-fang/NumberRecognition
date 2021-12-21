@@ -110,7 +110,7 @@ class Ui_MainWindow(object):
         self.clear.setFont(font)
         self.clear.setObjectName("clear")
         self.DataArea = QtWidgets.QLabel(self.centralwidget)
-        self.DataArea.setGeometry(QtCore.QRect(330, 320, 261, 261))
+        self.DataArea.setGeometry(QtCore.QRect(330, 320, 280, 280))
         self.DataArea.setMouseTracking(False)
         self.DataArea.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.DataArea.setFrameShape(QtWidgets.QFrame.Box)
@@ -120,12 +120,12 @@ class Ui_MainWindow(object):
         self.DataArea.setText("")
         self.DataArea.setObjectName("DataArea")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(330, 320, 261, 261))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(330, 320, 280, 280))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.Area_Layout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.Area_Layout.setContentsMargins(0, 0, 0, 0)
         self.Area_Layout.setSpacing(0)
-        self.Area_Layout.setObjectName("dArea_Layout")
+        self.Area_Layout.setObjectName("Area_Layout")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 667, 23))
@@ -159,9 +159,13 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.kSlider.valueChanged['int'].connect(self.k_value.setValue) # type: ignore
+        self.k_value.valueChanged['int'].connect(self.kSlider.setValue) # type: ignore
         self.trainningSlider.valueChanged['int'].connect(self.trainning_value.setValue) # type: ignore
-        self.action1_MNIT_random_selection.triggered['bool'].connect(self.selectImage.setDisabled) # type: ignore
-        self.action2_Mouse.triggered['bool'].connect(self.selectImage.setEnabled) # type: ignore
+        self.trainning_value.valueChanged['int'].connect(self.trainningSlider.setValue) # type: ignore
+
+        # menubars
+        self.action1_MNIT_random_selection.triggered['bool'].connect(MainWindow.selectImage_callback) # type: ignore
+        self.action2_Mouse.triggered['bool'].connect(MainWindow.Mouse_callback) # type: ignore
         #buttons
         self.selectImage.clicked.connect(MainWindow.selectImage_callback)
         self.clear.clicked.connect(MainWindow.clear_callback)
