@@ -1,4 +1,4 @@
-# Viikko6 Raportti
+# Viikko1 Raportti
 | Käytetyt ajat | tehnyt |
 | :----------:    | :-----------:   |
 | 1h | GUI |
@@ -14,10 +14,11 @@
 * Mitä teen seuraavaksi?
     * GUI valmiiksi ja testit
 
-# Viikko6 Jälkeen
+#### Viimeisen viikon jälkeen
 | Käytetyt ajat | tehnyt |
 | :----------:    | :-----------:   |
 | extra 2h | GUI |
 | extra 2h | GUI |
 | extra 2h | GUI |
 | extra 2h | GUI |
+| extra 1h | D22 ja D23 tarkkuuden testaaminen |
