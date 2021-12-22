@@ -72,6 +72,48 @@ class Knn:
         #get the reseult
         #print (self.get_result(heap_k))
         return self.get_result(heap_k)
+    def percentage(self,  testing_range =200, trainning_range = 1000, k=3, method = "D22"):
+        """return a float num with percentage%
+
+        Args:
+            test_range (int, optional): [description]. Defaults to 200.
+            trainning_range (int, optional): [description]. Defaults to 1000.
+        """
+        imagesB_location, imagesB = self._get_dataB_normal(trainning_range)#self._get_dataB_random(train_range)
+        #test set
+        #imagesA_location, imagesA = self._get_dataA_normal(testing_range)
+
+        correct_times = 0.0
+        for indexA in range (testing_range):
+            imageA_location = self._test_img_location[indexA]#imagesA_location[indexA]#
+            imageA = self._test_img[indexA]#imagesA[indexA]#
+            heap_k = []
+            #go through the tainning set
+            for indexB in range (trainning_range):
+                if method == "D22":
+                    dist = self._D_22(imageA_location, imageA, imagesB_location[indexB], imagesB[indexB])
+                if method == "D23":
+                    dist = self._D_23(imageA_location, imageA, imagesB_location[indexB], imagesB[indexB])
+                if len(heap_k) < k:
+                    #add tuple (dist,label)
+                    label = self._train_label[indexB]
+                    heap_k.append((dist, label))
+                    _heapify_max(heap_k)
+                #not < k and dist is smaller
+                else:
+                    heap_k_max_dist = heap_k[0][0]
+                    if dist < heap_k_max_dist:
+                        label = self._train_label[indexB]
+                        heap_k[0]=(dist,label)
+                        _heapify_max(heap_k)
+
+            
+            if self.get_result(heap_k) == self.get_label(indexA):
+                correct_times+=1
+        
+        return correct_times/testing_range
+
+
     def get_result(self, heap_k):#improveable, what if frequences are same?
         """return the most frequence number in the list
 
@@ -96,6 +138,15 @@ class Knn:
         """
         
         return self._train_img_location[:train_range], self._train_img[:train_range]
+    def _get_dataA_normal(self, test_range):
+        """ 0 - test_range-1 index's data from the testing list 
+        Args:
+            test_range (int): <=60000
+        Returns:
+            imageB: testing image data, 1d list with values 0-27 coordinates, size = train_range
+        """
+    
+        return self._test_img_location[:test_range], self._test_img[:test_range]
     
     def _get_dataB_random(self, train_range):
         """ Data from the trainning list. Selecting data randomly
