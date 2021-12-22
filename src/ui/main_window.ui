@@ -300,7 +300,7 @@
       <height>261</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="dArea_Layout">
+    <layout class="QVBoxLayout" name="Area_Layout">
      <property name="spacing">
       <number>0</number>
      </property>

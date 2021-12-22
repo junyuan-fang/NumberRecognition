@@ -1,3 +1,4 @@
+from repositories.mnist import GRAYSCALE
 from repositories.mnist_data_repository import mnist_data_repository as data_repo
 from math import sqrt
 from heapq import _heapify_max
@@ -17,9 +18,10 @@ class Knn:
         """KNN constructor"""
 
         self._test_label, self._train_label, self._test_img, self._train_img, self._test_img_location, self._train_img_location = data_repo.get_all()
-        
-    def recognition(self, k = 3, input_img_index = 0 , train_range = 200, method = "D22"):
+        self.percent = 100.0
+    def recognition(self, k = 3, input_img_index = 0 , train_range = 200, method = "D22", img = None):
         """Classifier, with method D22 and D23. We assume that 0-9 data's appearance are equal
+            Nomal condition: 
 
         Args:
             k (int, optional): [description]. Defaults to 3.
@@ -30,9 +32,22 @@ class Knn:
         Returns:
             result (int) : 0-9 number 
         """
+        #Training set are same
         imagesB_location, imagesB = self._get_dataB_normal(train_range)#self._get_dataB_random(train_range)
-        imageA_location = self._test_img_location[input_img_index]
-        imageA = self._test_img[input_img_index]
+        #test set
+        imageA_location = []
+        imageA = [[0 for _ in range(28)] for _ in range(28)]
+        
+        if input_img_index<0:#img from the mouse
+            for y in range(len(img)):
+                for x in range(len(img[0])):
+                    if img[y][x][0]>GRAYSCALE:
+                        imageA_location.append((y,x))
+                        imageA[y][x] = 1
+
+        else:
+            imageA_location = self._test_img_location[input_img_index]
+            imageA = self._test_img[input_img_index]
 
         heap_k = []
         #go through the tainning set

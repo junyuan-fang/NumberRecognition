@@ -164,8 +164,10 @@ class Ui_MainWindow(object):
         self.trainning_value.valueChanged['int'].connect(self.trainningSlider.setValue) # type: ignore
 
         # menubars
-        self.action1_MNIT_random_selection.triggered['bool'].connect(MainWindow.selectImage_callback) # type: ignore
+        self.action1_MNIT_random_selection.triggered['bool'].connect(MainWindow.MNIT_random_selection_callback) # type: ignore
         self.action2_Mouse.triggered['bool'].connect(MainWindow.Mouse_callback) # type: ignore
+        self.actionD22.triggered['bool'].connect(MainWindow.D22_callback)
+        self.actionD23.triggered['bool'].connect(MainWindow.D23_callback)
         #buttons
         self.selectImage.clicked.connect(MainWindow.selectImage_callback)
         self.clear.clicked.connect(MainWindow.clear_callback)

@@ -35,6 +35,11 @@ class PaintBoard(QWidget):
         self.__board.fill(fill)
         self.update()
     
+    # get QImage
+    def getContentAsQImage(self):
+        image = self.__board.toImage()
+        return image 
+    
     # pen color  
     def setPenColor(self, color):
         self.__penColor = color
