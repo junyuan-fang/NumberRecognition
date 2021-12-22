@@ -11,14 +11,9 @@ Käsin kirjoitettujen numeroiden tunnistus.
 *   [Viikkoraportit](https://github.com/junyuan-fang/Recognition_of_handwritten_numbers/tree/master/documentation/viikkoraportti)
 *   [Käyttöohje](https://github.com/junyuan-fang/Recognition_of_handwritten_numbers/tree/master/documentation/Käyttöohje.md)
 ## Viikkoraportit
-[Viikkoraportti 1](./documentation/viikkoraportti/viikkoraportti1.md.md)
-
-[Viikkoraportti 2](./documentation/viikkoraportti/viikkoraportti2.md.md)
-
-[Viikkoraportti 3](./documentation/viikkoraportti/viikkoraportti3.md.md)
-
-[Viikkoraportti 4](./documentation/viikkoraportti/viikkoraportti4.md.md)
-
-[Viikkoraportti 5](./documentation/viikkoraportti/viikkoraportti5.md.md)
-
-[Viikkoraportti 6](./documentation/viikkoraportti/viikkoraportti6.md.md)
+[Viikkoraportti 1](./documentation/viikkoraportti/viikkoraportti1.md)
+[Viikkoraportti 2](./documentation/viikkoraportti/viikkoraportti2.md)
+[Viikkoraportti 3](./documentation/viikkoraportti/viikkoraportti3.md)
+[Viikkoraportti 4](./documentation/viikkoraportti/viikkoraportti4.md)
+[Viikkoraportti 5](./documentation/viikkoraportti/viikkoraportti5.md)
+[Viikkoraportti 6](./documentation/viikkoraportti/viikkoraportti6.md)
