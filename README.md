@@ -1,8 +1,10 @@
 # Number Recognition
 TiraLabra
-Käsin kirjoitettujen numeroiden tunnistus.  MNIST- tietokantan aineiston numero(Vasen), Hiirellä piiretyn numero(Oikea).
+Käsin kirjoitettujen numeroiden tunnistus.  
+
 
 <img src="https://user-images.githubusercontent.com/61732233/147152270-f188d5e5-e415-482e-b6d7-95e0525e7ebd.png" width="40%" height="40%">
+MNIST- tietokannasta(Vasemmalla), Hiirellä piirretyn numero(Oikealla).
 
 ## Dokumentaatio
 *   [Määrittelydokumentti](https://github.com/junyuan-fang/Recognition_of_handwritten_numbers/blob/master/documentation/m%C3%A4%C3%A4rittelydokumentti.md)
