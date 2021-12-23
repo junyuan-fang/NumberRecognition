@@ -182,7 +182,7 @@ class Ui_MainWindow(object):
         self.k_label.setText(_translate("MainWindow", "K - neighbors:"))
         self.selectImage.setText(_translate("MainWindow", "Random image"))
         self.selectImage.setDescription(_translate("MainWindow", "Extract a img from MNIST"))
-        self.trainninglabel.setText(_translate("MainWindow", "Trainning size:"))
+        self.trainninglabel.setText(_translate("MainWindow", "Training size:"))
         self.recognization.setText(_translate("MainWindow", "Recognization"))
         self.ResultLabel.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-weight:600;\">Result : </span></p></body></html>"))
         self.DataInputLabel.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-weight:600;\">Data input area:</span></p></body></html>"))
