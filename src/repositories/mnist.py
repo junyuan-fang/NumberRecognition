@@ -4,9 +4,6 @@ import pickle
 import os
 import numpy as np
 
-def test_imported():
-    print("Imported")
-
 key_file = {
     'train_img':'train-images-idx3-ubyte.gz',
     'train_label':'train-labels-idx1-ubyte.gz',
