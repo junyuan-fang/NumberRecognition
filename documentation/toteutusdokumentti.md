@@ -32,7 +32,7 @@ Olkoon
 
 Tällöin
 * ```calculate(test_img_pixel_location, train_img))``` aikavaativuus on ```O(n²)``` pahimmassa takauksessa test_img_pixel_location on koko test_img, ja samalla pitää käydä joka kerta koko train_image läpi.
-* ```update_k_neighbours(train_label, distance)``` aikavaativuus on ```O(log(k))```, tässä on käytetty 'maxheap', pävittämällä suurin arvo pienemmäksi, saadaan lähimmät naapurit
+* ```update_k_neighbours(train_label, distance)``` aikavaativuus on ```O(log(k))```, tässä on käytetty 'maxheap', pävittämällä suurinta arvoa pienemmäksi, saadaan lähimmät naapurit
 * ```result()``` aikavaativuus on ```O(k)```
 * ```knn(train_set, test_img_pixel_location)``` aikavaativuus on ```O(mn² + mlog(k) + k)```
 * Koska k arvot ovat yleensä pieniä, tällöin  aikavaativuus on ```O(mn²)```
