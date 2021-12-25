@@ -1,3 +1,6 @@
+coverage
+htmlcov
+.vscode
 #big files 
 *.pkl
 
