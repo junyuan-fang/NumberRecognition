@@ -27,7 +27,7 @@ class MnistRepository():
     def get_test_image(self):
         """
         Returns:
-            [ [[int]] ]: test image, values are 0 or 1
+            [ [[int]] ]: test image, values are 0 or 1, size is 28x28
         """
         return self.__images["test_img"]
 
