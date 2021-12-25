@@ -1,4 +1,5 @@
 ![GitHub Actions](https://github.com/junyuan-fang/NumberRecognition/workflows/CI/badge.svg)
+[![codecov](https://codecov.io/gh/junyuan-fang/NumberRecognition/branch/main/graph/badge.svg?token=Y1G43V7N7H)](https://codecov.io/gh/junyuan-fang/NumberRecognition)
 # Number Recognition
 TiraLabra
 Käsin kirjoitettujen numeroiden tunnistus.  
