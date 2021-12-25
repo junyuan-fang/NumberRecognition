@@ -143,7 +143,8 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.action1_MNIT_random_selection = QtWidgets.QAction(MainWindow)
-        self.action1_MNIT_random_selection.setObjectName("action1_MNIT_random_selection")
+        self.action1_MNIT_random_selection.setObjectName(
+            "action1_MNIT_random_selection")
         self.action2_Mouse = QtWidgets.QAction(MainWindow)
         self.action2_Mouse.setObjectName("action2_Mouse")
         self.actionD22 = QtWidgets.QAction(MainWindow)
@@ -158,17 +159,23 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuMethod.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.kSlider.valueChanged['int'].connect(self.k_value.setValue) # type: ignore
-        self.k_value.valueChanged['int'].connect(self.kSlider.setValue) # type: ignore
-        self.trainningSlider.valueChanged['int'].connect(self.trainning_value.setValue) # type: ignore
-        self.trainning_value.valueChanged['int'].connect(self.trainningSlider.setValue) # type: ignore
+        self.kSlider.valueChanged['int'].connect(
+            self.k_value.setValue)  # type: ignore
+        self.k_value.valueChanged['int'].connect(
+            self.kSlider.setValue)  # type: ignore
+        self.trainningSlider.valueChanged['int'].connect(
+            self.trainning_value.setValue)  # type: ignore
+        self.trainning_value.valueChanged['int'].connect(
+            self.trainningSlider.setValue)  # type: ignore
 
         # menubars
-        self.action1_MNIT_random_selection.triggered['bool'].connect(MainWindow.MNIT_random_selection_callback) # type: ignore
-        self.action2_Mouse.triggered['bool'].connect(MainWindow.Mouse_callback) # type: ignore
+        self.action1_MNIT_random_selection.triggered['bool'].connect(
+            MainWindow.MNIT_random_selection_callback)  # type: ignore
+        self.action2_Mouse.triggered['bool'].connect(
+            MainWindow.Mouse_callback)  # type: ignore
         self.actionD22.triggered['bool'].connect(MainWindow.D22_callback)
         self.actionD23.triggered['bool'].connect(MainWindow.D23_callback)
-        #buttons
+        # buttons
         self.selectImage.clicked.connect(MainWindow.selectImage_callback)
         self.clear.clicked.connect(MainWindow.clear_callback)
         self.recognization.clicked.connect(MainWindow.recognization_callback)
@@ -181,15 +188,19 @@ class Ui_MainWindow(object):
         self.knnResult.setText(_translate("MainWindow", "9"))
         self.k_label.setText(_translate("MainWindow", "K - neighbors:"))
         self.selectImage.setText(_translate("MainWindow", "Random image"))
-        self.selectImage.setDescription(_translate("MainWindow", "Extract a img from MNIST"))
+        self.selectImage.setDescription(_translate(
+            "MainWindow", "Extract a img from MNIST"))
         self.trainninglabel.setText(_translate("MainWindow", "Training size:"))
         self.recognization.setText(_translate("MainWindow", "Recognization"))
-        self.ResultLabel.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-weight:600;\">Result : </span></p></body></html>"))
-        self.DataInputLabel.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-weight:600;\">Data input area:</span></p></body></html>"))
+        self.ResultLabel.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-weight:600;\">Result : </span></p></body></html>"))
+        self.DataInputLabel.setText(_translate(
+            "MainWindow", "<html><head/><body><p><span style=\" font-weight:600;\">Data input area:</span></p></body></html>"))
         self.clear.setText(_translate("MainWindow", "Clear"))
         self.menuInput.setTitle(_translate("MainWindow", "Input"))
         self.menuMethod.setTitle(_translate("MainWindow", "Method"))
-        self.action1_MNIT_random_selection.setText(_translate("MainWindow", "1: MNIT"))
+        self.action1_MNIT_random_selection.setText(
+            _translate("MainWindow", "1: MNIT"))
         self.action2_Mouse.setText(_translate("MainWindow", "2:Mouse"))
         self.actionD22.setText(_translate("MainWindow", "D22"))
         self.actionD23.setText(_translate("MainWindow", "D23"))
