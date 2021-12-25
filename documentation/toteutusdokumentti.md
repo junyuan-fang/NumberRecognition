@@ -1,11 +1,11 @@
 # Toteutusdokumentti
 NumberRecognition-sovelluksen koodi on sijoitettu hakemistoihin seuraavasti:   
-![image](https://github.com/junyuan-fang/NumberRecognition/blob/master/documentation/pakkauskaavio.png)   
+![image](https://github.com/junyuan-fang/NumberRecognition/blob/main/documentation/pakkauskaavio.png)   
 * Käyttöjärjestelmä([UI](https://github.com/junyuan-fang/NumberRecognition/tree/master/src/ui))
 * Sovelluslogiikka([Services](https://github.com/junyuan-fang/NumberRecognition/tree/master/src/services))
 * Tiedon tallennus([Repositories](https://github.com/junyuan-fang/NumberRecognition/tree/master/src/repositories))
 ## Ohjelman rakenne
-Ohjelman käynnistettäessä ```MnistRepository``` olio käsittelee ```.gz``` tiedostoja mnist([UI](https://github.com/junyuan-fang/NumberRecognition/blob/master/src/repositories/mnist.py)) apufunktioiden avulla , ja tallentaa käsiteltyjä tiedostoja ```.pkl``` muotoon seuraavaa käynnistystä varten. ```Knn```olio pyytää kaikki tarvittavat tiedot ```MnistRepository``` oliosta, ja suorittaa numeroiden tunnistusta.
+Ohjelman käynnistettäessä ```MnistRepository``` olio käsittelee ```.gz``` tiedostoja [mnist](https://github.com/junyuan-fang/NumberRecognition/blob/master/src/repositories/mnist.py) apufunktioiden avulla , ja tallentaa käsiteltyjä tiedostoja ```.pkl``` muotoon seuraavaa käynnistystä varten. ```Knn```olio pyytää kaikki tarvittavat tiedot ```MnistRepository``` oliosta, ja suorittaa numeroiden tunnistusta.
 
 ## Saavutetut aika- ja tilavaativuudet
 Operaatiot riippuvat kuvien koosta ja määrästä.
