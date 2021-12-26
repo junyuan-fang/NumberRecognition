@@ -85,10 +85,12 @@ class TestKnn(unittest.TestCase):
         result = knn.get_result(maxheap)
         self.assertEqual(result,8)
 
-    def test_recognition_returns_int(self):
+    def test_recognition_returns_valid_int(self):
         result = knn.recognition()
         self.assertNotEqual(type(result),float)
         self.assertNotEqual(type(result),str)
+        self.assertTrue(result<=9)
+        self.assertTrue(result>=0)
     
     def test_recognition_D22_returns_valid_result(self):
         result = knn.recognition(3,0,1,"D22")
@@ -102,6 +104,13 @@ class TestKnn(unittest.TestCase):
     
     def test_recognition_from_mouse_painted_with_empty_img(self):
         img = [[ [0, 0, 0, 255] for _ in range(28)] for _ in range(28)]
+        result = knn.recognition(3,-1,1,"D23",img)
+        print(result)
+        self.assertTrue(result<=9)
+        self.assertTrue(result>=0)
+    
+    def test_recognition_from_mouse_painted_with_full_img(self):
+        img = [[ [255, 255, 255, 255] for _ in range(28)] for _ in range(28)]
         result = knn.recognition(3,-1,1,"D23",img)
         print(result)
         self.assertTrue(result<=9)
