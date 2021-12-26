@@ -24,4 +24,5 @@
 | extra 1h | D22 ja D23 tarkkuuden testaaminen |
 | extra 1h | Aikavaativuus |
 | extra 3h | codecov badge ohje ohjelmistotuotannon viikko1|
+| extra 4h | unittests|
 
