@@ -87,7 +87,8 @@ class TestKnn(unittest.TestCase):
 
     def test_recognition_returns_int(self):
         result = knn.recognition()
-        self.assertEqual(type(result),int)
+        self.assertNotEqual(type(result),float)
+        self.assertNotEqual(type(result),str)
     
     def test_recognition_returns_valid_result(self):
         result = knn.recognition()
