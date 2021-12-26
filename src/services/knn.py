@@ -2,7 +2,6 @@ from repositories.mnist import GRAYSCALE
 from repositories.mnist_data_repository import mnist_data_repository as data_repo
 from math import sqrt
 from heapq import _heapify_max
-import random
 
 
 class Knn:
@@ -18,9 +17,7 @@ class Knn:
 
     def __init__(self):
         """KNN constructor"""
-
         self._test_label, self._train_label, self._test_img, self._train_img, self._test_img_location, self._train_img_location = data_repo.get_all()
-        self.percent = 100.0
 
     def recognition(self, k=3, input_img_index=0, train_range=200, method="D22", img=None):
         """Classifier, with method D22 and D23. We assume that 0-9 data's appearance are equal
@@ -31,13 +28,14 @@ class Knn:
             input_img_index (int, optional): [description]. Defaults to 0.
             train_range (int, optional): Because this method takes a lot of time for trainning. Defaults to 200.
             method (str, optional): [description]. Defaults to "D22".
+            img (28x28 list, optional): img from the gui 
 
         Returns:
             result (int) : 0-9 number 
         """
         # Training set are same
         imagesB_location, imagesB = self._get_dataB_normal(
-            train_range)  # self._get_dataB_random(train_range)
+            train_range)
         # test set
         imageA_location = []
         imageA = [[0 for _ in range(28)] for _ in range(28)]
@@ -62,21 +60,10 @@ class Knn:
             if method == "D23":
                 dist = self._D_23(imageA_location, imageA,
                                   imagesB_location[index], imagesB[index])
-            if len(heap_k) < k:
-                # add tuple (dist,label)
-                label = self._train_label[index]
-                heap_k.append((dist, label))
-                _heapify_max(heap_k)
-            # not < k and dist is smaller
-            else:
-                heap_k_max_dist = heap_k[0][0]
-                if dist < heap_k_max_dist:
-                    label = self._train_label[index]
-                    heap_k[0] = (dist, label)
-                    _heapify_max(heap_k)
 
-        # get the reseult
-        #print (self.get_result(heap_k))
+            label = self._train_label[index]
+            self.update_nearest_neighbour(k,heap_k,dist,label)
+
         return self.get_result(heap_k)
 
     def percentage(self,  testing_range=200, trainning_range=1000, k=3, method="D22"):
@@ -88,14 +75,11 @@ class Knn:
         """
         imagesB_location, imagesB = self._get_dataB_normal(
             trainning_range)  # self._get_dataB_random(train_range)
-        # test set
-        #imagesA_location, imagesA = self._get_dataA_normal(testing_range)
-
+        
         correct_times = 0.0
         for indexA in range(testing_range):
-            # imagesA_location[indexA]#
             imageA_location = self._test_img_location[indexA]
-            imageA = self._test_img[indexA]  # imagesA[indexA]#
+            imageA = self._test_img[indexA]
             heap_k = []
             # go through the tainning set
             for indexB in range(trainning_range):
@@ -105,38 +89,76 @@ class Knn:
                 if method == "D23":
                     dist = self._D_23(imageA_location, imageA,
                                       imagesB_location[indexB], imagesB[indexB])
-                if len(heap_k) < k:
-                    # add tuple (dist,label)
-                    label = self._train_label[indexB]
-                    heap_k.append((dist, label))
-                    _heapify_max(heap_k)
-                # not < k and dist is smaller
-                else:
-                    heap_k_max_dist = heap_k[0][0]
-                    if dist < heap_k_max_dist:
-                        label = self._train_label[indexB]
-                        heap_k[0] = (dist, label)
-                        _heapify_max(heap_k)
+                #update neighbour's values
+                label = self._train_label[indexB]
+                
+                self.update_nearest_neighbour(k,heap_k,dist,label)
 
-            if self.get_result(heap_k) == self.get_label(indexA):
+            if self.get_result(heap_k) == self.get_test_label(indexA):
                 correct_times += 1
 
         return correct_times/testing_range
 
+    def update_nearest_neighbour(self,k,maxheap,dist,label):
+        """  using maxheap for getting all smaller values
+            time complexity is logN
+        Args:
+            k (int): neighbour's quantity
+            maxheap (list<dist,label>): container
+            dist (int): calculated distance
+            label (int): label
+        """
+        if len(maxheap) < k:
+            # add tuple (dist,label)
+            maxheap.append((dist, label))
+            _heapify_max(maxheap)
+        # not < k and dist is smaller
+        else:
+            heap_k_max_dist = maxheap[0][0]
+            if dist < heap_k_max_dist:
+                maxheap[0] = (dist, label)
+                _heapify_max(maxheap)
+
     def get_result(self, heap_k): 
         """return the most frequence number in the list
            what if frequences are same
+           time complexity = n
         Args:
             heap_k (tuple list(dist, label)): max heap, according to the dist
 
         Returns:
             label (int 0-9): most frequence number 
         """
-        results = []
-        for item in heap_k:
-            results.append(item[1])
-        return max(set(results), key=results.count)
+        # results = []
+        # for item in heap_k:
+        #     results.append(item[1])
+        # most_frequent = max(set(results), key=results.count)
+        # if most_frequent != heap_k[0][1]:
+        #     return
+        times = dict()
+        min_value = heap_k[0][1]
+        freq_number = heap_k[0][0]
+        #build {number: frequency}, and get min value + label
+        for i in range(len(heap_k)):
+            num = heap_k[i][1]
+            value = heap_k[i][0]
+            #build {number: frequency}
+            if num in times.keys():
+                times[num] += 1
+            else:
+                times[num] = 1
+            #get min value + label
+            if value <min_value:
+                min_value = value 
+                freq_number = num
 
+        #freq_number was following the min_value, now starts working
+        max_freq = 1
+        for num in times.keys():
+            if (max_freq < times[num]):
+                max_freq = times[num]
+                freq_number = num
+        return freq_number
     def _get_dataB_normal(self, train_range):
         """ 0 - train_range-1 index's data from the trainning list 
         Args:
@@ -146,26 +168,6 @@ class Knn:
         """
 
         return self._train_img_location[:train_range], self._train_img[:train_range]
-
-    def _get_dataA_normal(self, test_range):
-        """ 0 - test_range-1 index's data from the testing list 
-        Args:
-            test_range (int): <=60000
-        Returns:
-            imageB: testing image data, 1d list with values 0-27 coordinates, size = train_range
-        """
-
-        return self._test_img_location[:test_range], self._test_img[:test_range]
-
-    # def _get_dataB_random(self, train_range):
-    #     """ Data from the trainning list. Selecting data randomly
-    #     Args:
-    #         train_range (int): <=60000
-    #     Returns:
-    #         imageB: trainning image data, 1d list with values 0-27 coordinates, size = train_range
-    #     """
-
-    #     return random.sample(self._train_img_location, train_range), random.sample(self._train_img, train_range)
 
     def _D_22(self, imageA_location: list, imageA, imageB_location: list, imageB):
         """Distance measure D22 from
@@ -307,14 +309,29 @@ class Knn:
         """
         return sqrt(pow(Ay - By, 2) + pow(Ax - Bx, 2))
 
-    # for checkling
+    def get_test_label(self, i):
+        """get the label from the test set
+            used in the function "percentage"
 
-    def get_label(self, i):#used in test
+        Args:
+            i ([int]): the index 
+
+        Returns:
+            [int]: label from the test set
+        """
         return self._test_label[i]
+    
+    def get_test_img(self,i):
+        """get the img from the test set
+            used in the tui
 
-    def get_test_img(self, i):
+        Args:
+            i ([int]): the index 
+
+        Returns:
+            [list<int> 28x28]: img from the test set
+        """
         return self._test_img[i]
-
 
 knn = Knn()
 # "Start recognition"

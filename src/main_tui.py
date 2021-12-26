@@ -24,7 +24,7 @@ def main():
         start = time()
         marks = [' ', '*']
         index = random.randint(0, 9999)
-        label = K.knn.get_label(index)
+        label = K.knn.get_test_label(index)
         img_matrix = K.knn.get_test_img(index)
         print(f"Here is {label}'s pic:")
         show_img_matrix(img_matrix, marks)
@@ -62,7 +62,7 @@ def get_accuracy():
     print("Percentage = testing_range/raining_range")
     train_range = 1000
     test_range = 200
-    k = 0
+    k = 3
     method = "D22"
     again = True
 
