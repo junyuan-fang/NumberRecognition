@@ -56,6 +56,9 @@ class Window(QMainWindow, Ui_MainWindow):
         # self.MNIT_random_selection_callback()
         self.paint_board.setPenColor(QColor(0, 0, 0, 0))
         self.Area_Layout.addWidget(self.paint_board)
+        
+        #logic with recognization button
+        self.paint_board.mousePressed.connect(lambda: self.recognization.setEnabled(True))
 
     def setSpinBox(self):
         self.k_value.setMinimum(1)
@@ -80,8 +83,10 @@ class Window(QMainWindow, Ui_MainWindow):
         self.have_value = False
 
     # mouse mode
-
     def Mouse_callback(self):
+        #logic with recognization button
+        self.recognization.setEnabled(False)
+
         self.mode = 2
         self.clearDataArea()
         self.selectImage.setEnabled(False)
@@ -94,6 +99,9 @@ class Window(QMainWindow, Ui_MainWindow):
         """Select a img from the test(10000) image, and display it on the paint_board
         data->pil_img->qimage->Pixmap()
         """
+        #logic with recognization button
+        self.recognization.setEnabled(True)
+
         self.have_value = True
         self.index = random.randint(0, 9999)
         img = self.test_pic[self.index]
@@ -111,12 +119,12 @@ class Window(QMainWindow, Ui_MainWindow):
         pix = QPixmap.fromImage(qimage)
         self.DataArea.setPixmap(pix)
 
+
     def clearDataArea(self):
         self.paint_board.clear()
         self.knnResult.clear()
         self.DataArea.clear()
-        # clear index
-    # 'clear'
+        self.recognization.setEnabled(False)
 
     def clear_callback(self):
         self.clearDataArea()

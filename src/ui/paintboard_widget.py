@@ -3,10 +3,12 @@ import numpy as np
 from PIL import Image, ImageQt
 from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtGui import QPixmap, QPainter, QPen, QColor
-from PyQt5.QtCore import Qt, QPoint, QSize
+from PyQt5.QtCore import Qt, QPoint, QSize, pyqtSignal
 
 
 class PaintBoard(QWidget):
+    #singnal
+    mousePressed = pyqtSignal()
     def __init__(self, Parent=None, Size=QSize(280, 280), Fill=QColor(255, 255, 255, 255)):
         super().__init__(Parent)
         # init parameter
@@ -24,6 +26,7 @@ class PaintBoard(QWidget):
         self.__board.fill(Fill)
         self.setFixedSize(self.__size)
         self.__painter = QPainter()  # Qpainter
+
 
     def clear(self):
         self.__board.fill(self.__fill)
@@ -62,6 +65,7 @@ class PaintBoard(QWidget):
     def mouseMoveEvent(self, mouseEvent):
         if mouseEvent.buttons() == Qt.LeftButton:
             self.__end_point = mouseEvent.pos()
+            self.mousePressed.emit()
 
             # buffer
             self.__painter.begin(self.__board)
