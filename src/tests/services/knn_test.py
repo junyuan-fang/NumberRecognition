@@ -90,10 +90,23 @@ class TestKnn(unittest.TestCase):
         self.assertNotEqual(type(result),float)
         self.assertNotEqual(type(result),str)
     
-    def test_recognition_returns_valid_result(self):
-        result = knn.recognition()
+    def test_recognition_D22_returns_valid_result(self):
+        result = knn.recognition(3,0,1,"D22")
         self.assertTrue(result<=9)
         self.assertTrue(result>=0)
+
+    def test_recognition_D23_returns_valid_result(self):
+        result = knn.recognition(3,0,1,"D23")
+        self.assertTrue(result<=9)
+        self.assertTrue(result>=0)
+    
+    def test_recognition_from_mouse_painted_with_empty_img(self):
+        img = [[ [0, 0, 0, 255] for _ in range(28)] for _ in range(28)]
+        result = knn.recognition(3,-1,1,"D23",img)
+        print(result)
+        self.assertTrue(result<=9)
+        self.assertTrue(result>=0)
+
 
     def test_get_test_img_method_get_img_with_index_success(self):
         i = 0

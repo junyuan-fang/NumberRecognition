@@ -146,12 +146,14 @@ class Window(QMainWindow, Ui_MainWindow):
                 result = K.knn.recognition(k, index, train_range, method)
                 self.knnResult.setText(f"{result}")
             if self.mode == 2:  # mouse
+                
                 # Pixmap()->qimage->pil_img->data
                 qimage = self.paint_board.getContentAsQImage()
                 pil_img = ImageQt.fromqimage(qimage)
                 # resize
                 pil_img = pil_img.resize((28, 28))
                 img = np.asarray_chkfinite(pil_img)
+                print(img)
                 try:
                     result = K.knn.recognition(k, -1, train_range, method, img)
                     self.knnResult.setText(f"{result}")

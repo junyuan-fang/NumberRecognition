@@ -136,8 +136,8 @@ class Knn:
         # if most_frequent != heap_k[0][1]:
         #     return
         times = dict()
-        min_value = heap_k[0][1]
-        freq_number = heap_k[0][0]
+        min_value = heap_k[0][0]
+        freq_number = heap_k[0][1]
         #build {number: frequency}, and get min value + label
         for i in range(len(heap_k)):
             num = heap_k[i][1]
