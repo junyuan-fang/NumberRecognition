@@ -72,5 +72,18 @@ class TestMnist(TestCaseBase):#class TestCaseBase(unittest.TestCase):
         self.dataset = mnist.load_img_boolean()
         self.assertEqual(len(self.dataset['train_img']), 60_000)
         self.assertEqual(len(self.dataset['test_img']), 10_000)
+
+    
+    def test_no_image_boolean_index_pickle_file_initialization_succes(self):
+        if os.path.exists("./src/MNIST_data/img_boolean_index.pkl"):
+            os.remove("./src/MNIST_data/img_boolean_index.pkl")
+        mnist.load_img_to_y_x_index()
+        path = pl.Path("./src/MNIST_data/img_boolean_index.pkl")
+        self.assertIsFile(path)
+
+    def test_is_image_boolean_index_file_loading_succes(self):
+        self.dataset = mnist.load_img_to_y_x_index()
+        self.assertEqual(len(self.dataset['train_img']), 60_000)
+        self.assertEqual(len(self.dataset['test_img']), 10_000)
     
     

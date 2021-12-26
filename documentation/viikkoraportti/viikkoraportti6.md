@@ -19,8 +19,9 @@
 | :----------:    | :-----------:   |
 | extra 2h | QImage, bittien käsittely, test_img_bit.pkl |
 | extra 3h | MNIST kuva vihdoinkin näkyy QImage->QLabel|
-| extra 2h | GUI toteutus paint_boad|
-| extra 2h | GUI toteutus |
+| extra 3h | GUI toteutus paint_boad|
+| extra 3h | GUI toteutus |
 | extra 1h | D22 ja D23 tarkkuuden testaaminen |
 | extra 1h | Aikavaativuus |
 | extra 3h | codecov badge ohje ohjelmistotuotannon viikko1|
+
