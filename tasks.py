@@ -9,6 +9,10 @@ def coverage(ctx):
 def coverage_report(ctx):
     ctx.run("coverage html")
 
+@task(coverage_report)
+def html(ctx):
+    ctx.run("google-chrome htmlcov/index.html")
+
 @task
 def test(ctx):
     ctx.run("pytest src")

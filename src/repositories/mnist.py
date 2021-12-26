@@ -81,6 +81,7 @@ def _load_label_pkl():
         Read pickle file.
         Returns:
             dataset: returns list(numpy.ndarray) of labels(1-9)
+            dataset: {'train_label': __, 'test_label', __ }
     """
     if not os.path.exists(save_file_label):
         init_label()
