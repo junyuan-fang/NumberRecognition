@@ -123,9 +123,9 @@ class Knn:
 
         return correct_times/testing_range
 
-    def get_result(self, heap_k):  # improveable, what if frequences are same?
+    def get_result(self, heap_k): 
         """return the most frequence number in the list
-
+           what if frequences are same
         Args:
             heap_k (tuple list(dist, label)): max heap, according to the dist
 
@@ -157,15 +157,15 @@ class Knn:
 
         return self._test_img_location[:test_range], self._test_img[:test_range]
 
-    def _get_dataB_random(self, train_range):
-        """ Data from the trainning list. Selecting data randomly
-        Args:
-            train_range (int): <=60000
-        Returns:
-            imageB: trainning image data, 1d list with values 0-27 coordinates, size = train_range
-        """
+    # def _get_dataB_random(self, train_range):
+    #     """ Data from the trainning list. Selecting data randomly
+    #     Args:
+    #         train_range (int): <=60000
+    #     Returns:
+    #         imageB: trainning image data, 1d list with values 0-27 coordinates, size = train_range
+    #     """
 
-        return random.sample(self._train_img_location, train_range), random.sample(self._train_img, train_range)
+    #     return random.sample(self._train_img_location, train_range), random.sample(self._train_img, train_range)
 
     def _D_22(self, imageA_location: list, imageA, imageB_location: list, imageB):
         """Distance measure D22 from
@@ -309,11 +309,11 @@ class Knn:
 
     # for checkling
 
-    # def get_label(self, i):
-    #     return self._test_label[i]
+    def get_label(self, i):#used in test
+        return self._test_label[i]
 
-    # def get_test_img(self, i):
-    #     return self._test_img[i]
+    def get_test_img(self, i):
+        return self._test_img[i]
 
 
 knn = Knn()
