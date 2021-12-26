@@ -239,18 +239,19 @@ class Knn:
 
         Args:
             point (list): [y,x]
-            imageB : 2d matrix with values 0 or 1
+            imageB : 2d matrix with values 0 or 1, index are 0-27
 
         Returns:
             dist : shortest dist
         """
-        visited = [[False for j in range(28)] for i in range(28)]
+        size_B = len(B)
+        visited = [[False for j in range(size_B)] for i in range(size_B)]
         min_y = point[0]
         max_y = min_y
         min_x = point[1]
         max_x = min_x
         found = False
-        dist = 40  # longest is about 39.598
+        dist = sqrt(pow(size_B - 0, 2) + pow(size_B - 0, 2))  # longest is about 39.598
         while not found:
             for row_index in range(min_x, max_x+1):
                 # up
@@ -279,16 +280,16 @@ class Knn:
                     dist = min(dist, self._get_dist(
                         point[0], point[1], colum_index, max_x))
                     found = True
-            if (min_y == 0 and max_y == 27 and min_x == 0 and max_x == 27):
+            if (min_y == 0 and max_y == (size_B-1) and min_x == 0 and max_x == (size_B-1)):
                 break
             if not found:
                 if min_y > 0:
                     min_y -= 1
-                if max_y < 27:
+                if max_y < (size_B-1):
                     max_y += 1
                 if min_x > 0:
                     min_x -= 1
-                if max_x < 27:
+                if max_x < (size_B-1):
                     max_x += 1
         return dist
 
@@ -307,11 +308,12 @@ class Knn:
         return sqrt(pow(Ay - By, 2) + pow(Ax - Bx, 2))
 
     # for checkling
-    def get_label(self, i):
-        return self._test_label[i]
 
-    def get_test_img(self, i):
-        return self._test_img[i]
+    # def get_label(self, i):
+    #     return self._test_label[i]
+
+    # def get_test_img(self, i):
+    #     return self._test_img[i]
 
 
 knn = Knn()
