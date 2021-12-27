@@ -10,19 +10,18 @@ key_file = {
     'test_img':'t10k-images-idx3-ubyte.gz',
     'test_label':'t10k-labels-idx1-ubyte.gz'
 }
-train_num = 60000
-test_num = 10000
-img_dim = (1, 28, 28)
-img_size = 28*28 #784
+TRAIN_NUM = 60_000
+TEST_NUM = 10_000
+IMG_SIZE = 28*28 #784
 GRAYSCALE = 73
 
 #/home/fjunyuan/Codes/TiraLabra/Recognition_of_handwritten_numbers/src/MNIST_data/
-dataset_dir = "./src/MNIST_data"
+DATASET_DIR = "./src/MNIST_data"
 #os.path.abspath(os.path.dirname(os.getcwd()))+"/Recognition_of_handwritten_numbers/src/MNIST_data"
-save_file_label = dataset_dir + "/label.pkl"
-save_file_img = dataset_dir + "/test_img_bit.pkl"
-save_file_img_boolean = dataset_dir + "/img_boolean.pkl"
-save_file_img_boolean_index = dataset_dir + "/img_boolean_index.pkl"
+SAVE_LABEL_DIR = DATASET_DIR + "/label.pkl"
+SAVE_IMG_DIR = DATASET_DIR + "/test_img_bit.pkl"
+SAVE_IMG_BOOLEAN_DIR = DATASET_DIR + "/img_boolean.pkl"
+SAVE_IMG_BOOLEAN_INDEX_DIR = DATASET_DIR + "/img_boolean_index.pkl"
 
 
 def _load_img(file_name):
@@ -33,13 +32,13 @@ def _load_img(file_name):
         data: returns data bits, 60000x784 or  10000x784
     """
 
-    file_path = dataset_dir + "/" + file_name
+    file_path = DATASET_DIR + "/" + file_name
 
     print("Converting " + file_name + " to NumPy Array ...")
     with gzip.open(file_path, 'rb') as f:
         data = np.frombuffer(f.read(), np.uint8, offset=16)#according to the MNIST
     #-1 then we do not need to know the original size. train = 60000x784, test = 10000x784
-    data = data.reshape(-1, img_size)
+    data = data.reshape(-1, IMG_SIZE)
     print("Done")
 
     #print(data.shape)
@@ -53,7 +52,7 @@ def _load_label(file_name):
         labels: returns list of labels(1-9)
     """
 
-    file_path = dataset_dir + "/" + file_name
+    file_path = DATASET_DIR + "/" + file_name
     print(file_path)
     print("Converting " + file_name + " to NumPy Array ...")
     with gzip.open(file_path, 'rb') as f:
@@ -72,7 +71,7 @@ def init_label():
     dataset ['test_label'] = _load_label(key_file['test_label'])
 
     print("Creating pickle file for label...")
-    with open(save_file_label, 'wb') as f:
+    with open(SAVE_LABEL_DIR, 'wb') as f:
         pickle.dump(dataset, f, -1)#for later loading
     print("Done!")
 
@@ -83,10 +82,10 @@ def _load_label_pkl():
             dataset: returns list(numpy.ndarray) of labels(1-9)
             dataset: {'train_label': __, 'test_label', __ }
     """
-    if not os.path.exists(save_file_label):
+    if not os.path.exists(SAVE_LABEL_DIR):
         init_label()
 
-    with open(save_file_label, 'rb') as f:
+    with open(SAVE_LABEL_DIR, 'rb') as f:
         dataset = pickle.load(f)
 
     return dataset
@@ -100,7 +99,7 @@ def init_test_img():
     dataset = _load_img(key_file['test_img'])
 
     print("Creating pickle file for test image...")
-    with open(save_file_img, 'wb') as f:
+    with open(SAVE_IMG_DIR, 'wb') as f:
         pickle.dump(dataset, f, -1)#for later loading
     print("Done!")
 
@@ -111,10 +110,10 @@ def load_test_img():
             dataset: returns matrix  10000x784 values are 0-255
     """
 
-    if not os.path.exists(save_file_img):
+    if not os.path.exists(SAVE_IMG_DIR):
         init_test_img()
 
-    with open(save_file_img, 'rb') as f:
+    with open(SAVE_IMG_DIR, 'rb') as f:
         dataset = pickle.load(f)# slow
 
     return dataset
@@ -159,7 +158,7 @@ def init_img_boolean(grayScale=73):
     dataset ['test_img'] = conver_img_to_boolean(test_img,grayScale)
 
     print("Creating pickle file for image(boolean)...")
-    with open(save_file_img_boolean, 'wb') as f:
+    with open(SAVE_IMG_BOOLEAN_DIR, 'wb') as f:
         pickle.dump(dataset, f, -1)#for later loading
     print("Done!")
 
@@ -170,10 +169,10 @@ def load_img_boolean(grayScale=73):
             dataset: returns matrix 60000x28x28 or 10000x28x28 values are 0-1 depends on grayscale
     """
 
-    if not os.path.exists(save_file_img_boolean):
+    if not os.path.exists(SAVE_IMG_BOOLEAN_DIR):
         init_img_boolean(grayScale)
 
-    with open(save_file_img_boolean, 'rb') as f:
+    with open(SAVE_IMG_BOOLEAN_DIR, 'rb') as f:
         dataset = pickle.load(f)#takes 3s to load, which is slow
 
     return dataset
@@ -215,7 +214,7 @@ def init_img_to_y_x(grayScale=73):
     dataset ['test_img'] = conver_img_to_y_x(test_img, grayScale)
 
     print("Creating pickle file for image(index)...")
-    with open(save_file_img_boolean_index, 'wb') as f:
+    with open(SAVE_IMG_BOOLEAN_INDEX_DIR, 'wb') as f:
         pickle.dump(dataset, f, -1)#for later loading
     print("Done!")
 
@@ -226,10 +225,10 @@ def load_img_to_y_x_index(grayScale=73):
         Returns:
             dataset: returns matrix 60000x list of [i,j]  or 10000x list of [i,j] depends on grayscale
     """
-    if not os.path.exists(save_file_img_boolean_index):
+    if not os.path.exists(SAVE_IMG_BOOLEAN_INDEX_DIR):
         init_img_to_y_x(grayScale)
 
-    with open(save_file_img_boolean_index, 'rb') as f:
+    with open(SAVE_IMG_BOOLEAN_INDEX_DIR, 'rb') as f:
         dataset = pickle.load(f)
 
     # matrix = [['#']*28 for i in range(28)]
