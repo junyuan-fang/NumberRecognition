@@ -29,7 +29,7 @@ Suoritusaika voidaan testata main_tui.py:lla [ohje](https://github.com/junyuan-f
 |-----|-----|
 
 
-Huomataan, että D23 ja D22 ovat melkein yhtä nopeita, mutta D23 tuotta hieman [parempaa](https://github.com/junyuan-fang/NumberRecognition/blob/main/documentation/report.pdf) tulosta. 
+Huomataan, että [D23](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) ja [D22](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) ovat melkein yhtä nopeita, mutta D23 tuotta hieman [parempaa](https://github.com/junyuan-fang/NumberRecognition/blob/main/documentation/report.pdf) tulosta. 
 
 Kaikki 60 000 x 10 000 kuvien vertailu kestää noin 3000 x 985.475s ≈ 821.299h ≈ 34.2179vrk.
 Ohjelma on ajettu ThinkPad T14 gen2 läppärillä
