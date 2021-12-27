@@ -55,6 +55,12 @@ class TestMnist(TestCaseBase):#class TestCaseBase(unittest.TestCase):
         mnist.load_test_img()
         path = pl.Path("./src/MNIST_data/test_img_bit.pkl")
         self.assertIsFile(path)
+    
+    def test_no_test_image_pickle_file_loading_succes(self):
+        if os.path.exists("./src/MNIST_data/test_img_bit.pkl"):
+            os.remove("./src/MNIST_data/test_img_bit.pkl")
+        self.dataset = mnist.load_test_img()
+        self.assertEqual(len(self.dataset), 10_000)
 
     def test_is_test_image_file_loading_succes(self):
         self.dataset = mnist.load_test_img()
