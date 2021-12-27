@@ -1,6 +1,7 @@
 # Käyttöohje
 Kaikki komennot suoritetaan [NumberRecognition](https://github.com/junyuan-fang/NumberRecognition) hekemistossa.  
 Tässä ohjessä oletetaan python 3.8 tai uudempi versio on asennettu 
+Ensimmäisen GUI tai TUI käynnistys kestää noin 1-5min
 ## Ympäristön asentaminen
   1. ```pip3 install poetry```
   2. ```poetry install```
