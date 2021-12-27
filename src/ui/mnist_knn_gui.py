@@ -49,6 +49,8 @@ class Window(QMainWindow, Ui_MainWindow):
         self.kSlider.setValue(3)
         self.k_value.setValue(3)
         self.knnResult.setText("No input")
+        # Button
+        self.recognization.setEnabled(False)
 
         # Board initalisation
         self.paint_board = PaintBoard(
@@ -64,13 +66,13 @@ class Window(QMainWindow, Ui_MainWindow):
         self.k_value.setMinimum(1)
         self.k_value.setMaximum(10)
         self.trainning_value.setMinimum(1)
-        self.trainning_value.setMaximum(10000)
+        self.trainning_value.setMaximum(60000)
 
     def setSlider(self):
         self.kSlider.setMinimum(1)
         self.kSlider.setMaximum(10)
         self.trainningSlider.setMinimum(1)
-        self.trainningSlider.setMaximum(10000)
+        self.trainningSlider.setMaximum(60000)
 
     # MNIST mode
     def MNIT_random_selection_callback(self):
