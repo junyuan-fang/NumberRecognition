@@ -1,4 +1,4 @@
-#This file is for loading all mnist and boolean values 
+#This file is for loading all mnist and boolean values
 import gzip
 import pickle
 import os
@@ -18,7 +18,7 @@ GRAYSCALE = 73
 
 #/home/fjunyuan/Codes/TiraLabra/Recognition_of_handwritten_numbers/src/MNIST_data/
 dataset_dir = "./src/MNIST_data"
-#os.path.abspath(os.path.dirname(os.getcwd())) + "/Recognition_of_handwritten_numbers/src/MNIST_data"
+#os.path.abspath(os.path.dirname(os.getcwd()))+"/Recognition_of_handwritten_numbers/src/MNIST_data"
 save_file_label = dataset_dir + "/label.pkl"
 save_file_img = dataset_dir + "/test_img_bit.pkl"
 save_file_img_boolean = dataset_dir + "/img_boolean.pkl"
@@ -32,15 +32,15 @@ def _load_img(file_name):
     Returns:
         data: returns data bits, 60000x784 or  10000x784
     """
-    
+
     file_path = dataset_dir + "/" + file_name
-    
-    print("Converting " + file_name + " to NumPy Array ...")    
+
+    print("Converting " + file_name + " to NumPy Array ...")
     with gzip.open(file_path, 'rb') as f:
-            data = np.frombuffer(f.read(), np.uint8, offset=16)#according to the MNIST
-    data = data.reshape(-1, img_size)#-1 then we do not need to know the original size. train = 60000x784, test = 10000x784
+        data = np.frombuffer(f.read(), np.uint8, offset=16)#according to the MNIST
+    #-1 then we do not need to know the original size. train = 60000x784, test = 10000x784
+    data = data.reshape(-1, img_size)
     print("Done")
-    
 
     #print(data.shape)
     return data
@@ -57,7 +57,7 @@ def _load_label(file_name):
     print(file_path)
     print("Converting " + file_name + " to NumPy Array ...")
     with gzip.open(file_path, 'rb') as f:
-            labels = np.frombuffer(f.read(), np.uint8, offset=8)#according to the MNIST
+        labels = np.frombuffer(f.read(), np.uint8, offset=8)#according to the MNIST
     print("Done")
 
     #print(data.shape)
@@ -88,11 +88,6 @@ def _load_label_pkl():
 
     with open(save_file_label, 'rb') as f:
         dataset = pickle.load(f)
-
-    # value = dataset['train_img'][9]
-    
-    # for w in value:
-    #     print(w) 
 
     return dataset
 #------------------------------------------------------
@@ -138,7 +133,7 @@ def conver_img_to_boolean(img_set, grayScale=73):
     set = []
     for img in img_set:
         new_img = img.reshape(28, 28)
-        matrix = [] 
+        matrix = []
         for row in new_img:
             list = []
             for x in range(len(row)):
@@ -148,7 +143,7 @@ def conver_img_to_boolean(img_set, grayScale=73):
                     list.append(1)
             matrix.append(list)
         set.append(matrix)
-    
+
     return set
 
 def init_img_boolean(grayScale=73):
@@ -180,11 +175,6 @@ def load_img_boolean(grayScale=73):
 
     with open(save_file_img_boolean, 'rb') as f:
         dataset = pickle.load(f)#takes 3s to load, which is slow
-
-    # value = dataset['train_img'][9]
-    
-    # for w in value:
-    #     print(w) 
 
     return dataset
 #------------------------------------------------------
@@ -241,7 +231,7 @@ def load_img_to_y_x_index(grayScale=73):
 
     with open(save_file_img_boolean_index, 'rb') as f:
         dataset = pickle.load(f)
-    
+
     # matrix = [['#']*28 for i in range(28)]
     # value = dataset['train_img'][9]
     # for q in value:
@@ -249,7 +239,7 @@ def load_img_to_y_x_index(grayScale=73):
     #     x = q[1]
     #     matrix[y][x] = '.'
     # for w in matrix:
-    #     print(w) 
+    #     print(w)
     # print(dataset['train_label'][9])
 
     return dataset
@@ -258,23 +248,5 @@ def load_img_to_y_x_index(grayScale=73):
 if __name__ == '__main__':
     dataset = _load_label_pkl()
     print(dataset['train_label'][0])
-    load_img_boolean() 
+    load_img_boolean()
     load_img_to_y_x_index()#only value "1" location in the list
-
-    # #tests
-    # dataset = {}
-    # dataset['train_img'] =  _load_img(key_file['train_img'])
-    # dataset['train_label'] =  _load_label(key_file['train_label'])
-
-    # #print(dataset['train_img'][0])
-    # print(os.path.abspath(__file__))
-
-    # img = dataset['train_img'][9]    # shape:[1,28,28] 
-    # img = img.reshape(28, 28)                   # shape:[28,28]  
-    # #imaging 0-127 are -128 - -1  negative
-    # #      128-255 are    0 - 127 positive
-    # img2 = img * 0xff      # outline/恢复灰度值大小 
-    # from pylab import *
-    # import matplotlib.pyplot as plt
-    # imshow(img, 'gray')
-    # plt.show()

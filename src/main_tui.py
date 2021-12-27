@@ -11,9 +11,10 @@ from services import knn as K
 
 def main():
     running = True
-    welcome = "Welcome to 'no gui', the procedure is for testing the 'k-nearest neighbors algorithm' implementation."
+    welcome = """Welcome to 'no gui', the procedure is for testing 
+                the 'k-nearest neighbors algorithm' implementation."""
     parameter_list = [3, 200, "D22"]
-    instruction = "'Enter' button to continue\n'set' to set parameters\n'p' to get the accuracy\n'q' to quit \n:"
+    instruction = """'Enter' button to continue\n'set' to set parameters\n'p' to get the accuracy\n'q' to quit \n:"""
     print(welcome)
     while running:
         # parameters

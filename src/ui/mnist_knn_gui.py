@@ -153,7 +153,6 @@ class Window(QMainWindow, Ui_MainWindow):
                 # resize
                 pil_img = pil_img.resize((28, 28))
                 img = np.asarray_chkfinite(pil_img)
-                print(img)
                 try:
                     result = K.knn.recognition(k, -1, train_range, method, img)
                     self.knnResult.setText(f"{result}")
